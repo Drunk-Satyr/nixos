@@ -1,10 +1,10 @@
-{ config, pkgs, system, inputs, ... }:
-
-{
+{ config, pkgs, system, inputs, ... }: {
     imports = [
         inputs.zen-browser.homeModules.beta
         # or inputs.zen-browser.homeModules.twilight
         # or inputs.zen-browser.homeModules.twilight-official
+
+        inputs.nixcord.homeModules.nixcord
     ];
 
     home.username = "caro";
@@ -28,6 +28,13 @@
         gimp
         blender
         openscad
+
+        # media
+        jellyfin-desktop
+
+        # messaging
+        # discord
+        # betterdiscordctl
     ];
 
     # basic configuration of git, please change to your own
@@ -45,6 +52,39 @@
         setAsDefaultBrowser = true;
     };
 
+    programs.nixcord = {
+        enable = true;
+
+        # Choose your Discord mod client (enable at most one of these two)
+        discord.vencord.enable = true;      # Standard Vencord
+        # discord.equicord.enable = true;   # Equicord (has more plugins)
+
+        # Or these
+        vesktop.enable = true;
+        # dorion.enable = true;
+        # legcord.enable = true;
+
+        # Theming
+        quickCss = "/* css goes here */";
+        config = {
+            useQuickCss = true;
+            themeLinks = [
+                # "https://raw.githubusercontent.com/PL7963/Discord-Mica/refs/heads/main/discord-mica.theme.css"
+            ];
+            frameless = true;
+
+            plugins = {
+                hideMedia.enable = true;
+                ignoreActivities = {
+                    enable = true;
+                    ignorePlaying = true;
+#                     ignoredActivities = [
+#                         { id = "game-id"; name = "League of Legends"; type = 0; }
+#                     ];
+                };
+            };
+        };
+    };
 
     # This value determines the home Manager release that your
     # configuration is compatible with. This helps avoid breakage
