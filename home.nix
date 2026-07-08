@@ -38,6 +38,7 @@
     openscad
 
     # media
+    vlc
     jellyfin-desktop
 
     # messaging
