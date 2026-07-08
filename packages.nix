@@ -1,4 +1,5 @@
 { pkgs, ... }:
-with pkgs; [
-    git
+with pkgs;
+[
+  git
 ]
