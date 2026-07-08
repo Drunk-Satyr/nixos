@@ -4,7 +4,7 @@
 {
   # For mount.cifs, required unless domain name resolution is not needed.
   environment.systemPackages = [ pkgs.cifs-utils ];
-  fileSystems."/mnt/share" = {
+  fileSystems."/mnt/media" = {
     device = "//10.10.0.126/sleepymedia";
     fsType = "cifs";
     options = let

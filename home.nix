@@ -12,12 +12,22 @@
 
     # Packages that should be installed to the user profile.
     home.packages = with pkgs; [
+        # cli utilities
         zip
         xz
         unzip
         p7zip
         oh-my-zsh
         oh-my-posh
+
+        # game managers
+        prismlauncher
+        steam
+
+        # gui tools
+        gimp
+        blender
+        openscad
     ];
 
     # basic configuration of git, please change to your own
