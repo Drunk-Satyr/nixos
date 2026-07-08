@@ -90,9 +90,6 @@
         ignoreActivities = {
           enable = true;
           ignorePlaying = true;
-          #                     ignoredActivities = [
-          #                         { id = "game-id"; name = "League of Legends"; type = 0; }
-          #                     ];
         };
       };
     };
@@ -112,6 +109,7 @@
       };
 
       "chat.disableAIFeatures" = true;
+      "terminal.integrated.initialHint" = false;
     };
     extensions = with pkgs.vscode-extensions; [
       jnoortheen.nix-ide
