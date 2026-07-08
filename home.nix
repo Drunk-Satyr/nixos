@@ -30,7 +30,7 @@
 
     # game managers
     prismlauncher
-    steam
+    # steam
 
     # gui tools
     gimp
