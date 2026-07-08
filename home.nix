@@ -19,6 +19,7 @@
         p7zip
         oh-my-zsh
         oh-my-posh
+        nixfmt
 
         # game managers
         prismlauncher
@@ -33,8 +34,7 @@
         jellyfin-desktop
 
         # messaging
-        # discord
-        # betterdiscordctl
+        signal-desktop
     ];
 
     # basic configuration of git, please change to your own
@@ -85,6 +85,27 @@
             };
         };
     };
+
+    programs.vscode = {
+        enable = true;
+        userSettings = {
+            "editor.fontSize" = 14;
+            "editor.formatOnSave" = true;
+            "workbench.colorTheme" = "Solarized Dark";
+            "telemetry.telemetryLevel" = "off";
+
+            # Nested blocks require quotes around the key strings
+            "[nix]" = {
+                "editor.tabSize" = 2;
+            };
+
+            "chat.disableAIFeatures" = true;
+        };
+        extensions = with pkgs.vscode-extensions; [
+            jnoortheen.nix-ide
+        ];
+    };
+
 
     # This value determines the home Manager release that your
     # configuration is compatible with. This helps avoid breakage
