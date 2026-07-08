@@ -42,6 +42,10 @@
 
     # messaging
     signal-desktop
+
+    # email
+    # thunderbird
+    # protonmail-bridge
   ];
 
   # basic configuration of git, please change to your own
