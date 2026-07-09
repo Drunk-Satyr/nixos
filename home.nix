@@ -108,8 +108,11 @@
         "editor.tabSize" = 2;
       };
 
+      # disables ai features
       "chat.disableAIFeatures" = true;
       "terminal.integrated.initialHint" = false;
+
+      "git.confirmSync" = false;
     };
     extensions = with pkgs.vscode-extensions; [
       jnoortheen.nix-ide
