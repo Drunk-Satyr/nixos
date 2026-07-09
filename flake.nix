@@ -34,7 +34,7 @@
           ./configuration.nix
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
+            # home-manager.useGlobalPkgs = true;
             home-manager.backupFileExtension = "HMBackup";
             home-manager.useUserPackages = true;
             home-manager.users.caro.imports = [

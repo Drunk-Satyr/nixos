@@ -12,6 +12,7 @@
     # or inputs.zen-browser.homeModules.twilight-official
 
     inputs.nixcord.homeModules.nixcord
+    ./overlays/default.nix
   ];
 
   home.username = "caro";
