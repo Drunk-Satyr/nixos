@@ -52,8 +52,10 @@
   # basic configuration of git, please change to your own
   programs.git = {
     enable = true;
-    userName = "DrunkSatyr";
-    userEmail = "caro@drunksatyr.dev";
+    settings = {
+      user.name = "DrunkSatyr";
+      user.email = "caro@drunksatyr.dev";
+    }
     extraConfig = {
       init.defaultBranch = "main";
     };
