@@ -12,11 +12,14 @@
     # or inputs.zen-browser.homeModules.twilight-official
 
     inputs.nixcord.homeModules.nixcord
-    ./overlays/default.nix
+
+    # /home/caro/.config/nixpkgs/home.conf
   ];
 
   home.username = "caro";
   home.homeDirectory = "/home/caro";
+
+  nixpkgs.overlays = [ (import ./overlays) ];
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
@@ -48,6 +51,9 @@
     # email
     # thunderbird
     # protonmail-bridge
+
+    # music
+    musescore
   ];
 
   # basic configuration of git, please change to your own
@@ -57,7 +63,7 @@
       user.name = "DrunkSatyr";
       user.email = "caro@drunksatyr.dev";
     };
-    extraConfig = {
+    settings = {
       init.defaultBranch = "main";
     };
   };
@@ -98,28 +104,33 @@
     };
   };
 
+  nixpkgs.config.allowUnfree = true;
+
   programs.vscode = {
     enable = true;
-    userSettings = {
-      "editor.fontSize" = 14;
-      "editor.formatOnSave" = true;
-      "workbench.colorTheme" = "Solarized Dark";
-      "telemetry.telemetryLevel" = "off";
+    profiles.default = {
+      userSettings = {
+        "editor.fontSize" = 14;
+        "editor.formatOnSave" = true;
+        "workbench.colorTheme" = "Solarized Dark";
+        "telemetry.telemetryLevel" = "off";
 
-      # Nested blocks require quotes around the key strings
-      "[nix]" = {
-        "editor.tabSize" = 2;
+        # Nested blocks require quotes around the key strings
+        "[nix]" = {
+          "editor.tabSize" = 2;
+        };
+
+        # disables ai features
+        "chat.disableAIFeatures" = true;
+        "terminal.integrated.initialHint" = false;
+
+        "git.confirmSync" = false;
+        "git.enableSmartCommit" = true;
       };
-
-      # disables ai features
-      "chat.disableAIFeatures" = true;
-      "terminal.integrated.initialHint" = false;
-
-      "git.confirmSync" = false;
+      extensions = with pkgs.vscode-extensions; [
+        jnoortheen.nix-ide
+      ];
     };
-    extensions = with pkgs.vscode-extensions; [
-      jnoortheen.nix-ide
-    ];
   };
 
   # This value determines the home Manager release that your
