@@ -115,6 +115,7 @@
       "terminal.integrated.initialHint" = false;
 
       "git.confirmSync" = false;
+      "git.enableSmartCommit" = true;
     };
     profiles.default.extensions = with pkgs.vscode-extensions; [
       jnoortheen.nix-ide
