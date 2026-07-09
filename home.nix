@@ -55,7 +55,7 @@
     settings = {
       user.name = "DrunkSatyr";
       user.email = "caro@drunksatyr.dev";
-    }
+    };
     extraConfig = {
       init.defaultBranch = "main";
     };
