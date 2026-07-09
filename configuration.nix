@@ -152,6 +152,8 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
+  boot.kernelParams = [ "nvidia.NVreg_TemporaryFilePath=/var/tmp" ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
 
