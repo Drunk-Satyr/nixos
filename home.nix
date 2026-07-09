@@ -56,7 +56,7 @@
       user.name = "DrunkSatyr";
       user.email = "caro@drunksatyr.dev";
     };
-    extraConfig = {
+    settings = {
       init.defaultBranch = "main";
     };
   };
@@ -99,7 +99,7 @@
 
   programs.vscode = {
     enable = true;
-    userSettings = {
+    profiles.default.userSettings = {
       "editor.fontSize" = 14;
       "editor.formatOnSave" = true;
       "workbench.colorTheme" = "Solarized Dark";
@@ -116,7 +116,7 @@
 
       "git.confirmSync" = false;
     };
-    extensions = with pkgs.vscode-extensions; [
+    profiles.default.extensions = with pkgs.vscode-extensions; [
       jnoortheen.nix-ide
     ];
   };
