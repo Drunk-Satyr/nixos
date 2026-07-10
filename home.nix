@@ -27,6 +27,8 @@
     oh-my-zsh
     oh-my-posh
     nixfmt
+    ffmpeg
+    yt-dlp
 
     # game managers
     prismlauncher
