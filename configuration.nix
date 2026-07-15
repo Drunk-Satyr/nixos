@@ -159,7 +159,7 @@
   # $ nix search wget
 
   # Imports packages from sub-file.
-  environment.systemPackages = with pkgs; import ./packages.nix { inherit pkgs; };
+  # environment.systemPackages = with pkgs; import ./packages.nix { inherit pkgs; };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
