@@ -50,6 +50,10 @@
     # email
     # thunderbird
     # protonmail-bridge
+
+    # file sync
+    syncthing
+    syncthingtray
   ];
 
   # basic configuration of git, please change to your own
