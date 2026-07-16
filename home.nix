@@ -3,6 +3,7 @@
   pkgs,
   system,
   inputs,
+  lib,
   ...
 }:
 {
@@ -39,6 +40,8 @@
     gimp
     blender
     openscad
+    orca-slicer
+    musescore
 
     # media
     vlc
@@ -51,6 +54,28 @@
     # thunderbird
     # protonmail-bridge
   ];
+
+  nixpkgs.overlays = [
+    (final: prev: {
+      musescore =
+        (import inputs.nixpkgs-musescore {
+          inherit (prev) system;
+        }).musescore;
+    })
+  ];
+
+  # necessary due to orca slicer not working otherwise
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-40.10.5"
+  ];
+
+  # allowing unfree software
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "vscode"
+      "discord"
+    ];
 
   # basic configuration of git, please change to your own
   programs.git = {

@@ -2,11 +2,14 @@
   description = "A very basic flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs-musescore.url = "github:nixos/nixpkgs/3c3b3ab88a34ff8026fc69cb78febb9ec9aedb16";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs = {
@@ -15,6 +18,7 @@
         home-manager.follows = "home-manager";
       };
     };
+
     nixcord.url = "github:4evy/nixcord";
   };
 
@@ -23,6 +27,7 @@
       nixpkgs,
       home-manager,
       zen-browser,
+      nixpkgs-musescore,
       ...
     }@inputs:
     {
@@ -34,7 +39,7 @@
           ./configuration.nix
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
+            # home-manager.useGlobalPkgs = true;
             home-manager.backupFileExtension = "HMBackup";
             home-manager.useUserPackages = true;
             home-manager.users.caro.imports = [
