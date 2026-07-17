@@ -41,7 +41,7 @@
     blender
     openscad
     orca-slicer
-    musescore
+    # musescore
 
     # media
     vlc
@@ -56,11 +56,18 @@
   ];
 
   nixpkgs.overlays = [
+    # currently failing due to the ram requirement to compile
+    # (final: prev: {
+    #   musescore =
+    #     (import inputs.nixpkgs-musescore {
+    #       inherit (prev) system;
+    #     }).musescore;
+    # })
     (final: prev: {
-      musescore =
-        (import inputs.nixpkgs-musescore {
+      orca-slicer =
+        (import inputs.nixpkgs-orcaslicer {
           inherit (prev) system;
-        }).musescore;
+        }).orca-slicer;
     })
   ];
 
