@@ -104,22 +104,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-musescore": {
-      "locked": {
-        "lastModified": 1673641359,
-        "narHash": "sha256-vffYAYAAG5Bhj4vjShFQWve24HyXPQAZdqn9jA5KT6U=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "3c3b3ab88a34ff8026fc69cb78febb9ec9aedb16",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "3c3b3ab88a34ff8026fc69cb78febb9ec9aedb16",
-        "type": "github"
-      }
-    },
     "nixpkgs-nixcord": {
       "locked": {
         "lastModified": 1782999065,
@@ -173,7 +157,6 @@
         "home-manager": "home-manager",
         "nixcord": "nixcord",
         "nixpkgs": "nixpkgs_2",
-        "nixpkgs-musescore": "nixpkgs-musescore",
         "nixpkgs-orcaslicer": "nixpkgs-orcaslicer",
         "zen-browser": "zen-browser"
       }
