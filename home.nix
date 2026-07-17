@@ -59,6 +59,13 @@
   ];
 
   nixpkgs.overlays = [
+    # currently failing to compile
+    (final: prev: {
+      musescore =
+        (import inputs.nixpkgs-musescore {
+          inherit (prev) system;
+        }).musescore;
+    })
     (final: prev: {
       orca-slicer =
         (import inputs.nixpkgs-orcaslicer {
