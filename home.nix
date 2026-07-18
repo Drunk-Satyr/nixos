@@ -21,7 +21,6 @@
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     # cli utilities
-    git
     zip
     xz
     unzip
