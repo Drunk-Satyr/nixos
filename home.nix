@@ -55,6 +55,10 @@
     # file sync
     syncthing
     syncthingtray
+
+    # compatiblitity layers
+    wine
+    mono # .NET
   ];
 
   nixpkgs.overlays = [
