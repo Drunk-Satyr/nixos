@@ -158,7 +158,28 @@
         "nixcord": "nixcord",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-orcaslicer": "nixpkgs-orcaslicer",
+        "vintagestory-nix": "vintagestory-nix",
         "zen-browser": "zen-browser"
+      }
+    },
+    "vintagestory-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1784565851,
+        "narHash": "sha256-3Z88vj4JMqaIF+5EStzGh0F65sLAI/efBdH49urI1TU=",
+        "ref": "refs/heads/master",
+        "rev": "b80a58d4d85a577a11d35500e80f8045fffd22b9",
+        "revCount": 155,
+        "type": "git",
+        "url": "https://codeberg.org/PierreBorine/vintagestory-nix"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://codeberg.org/PierreBorine/vintagestory-nix"
       }
     },
     "zen-browser": {

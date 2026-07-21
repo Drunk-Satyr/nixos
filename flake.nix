@@ -19,6 +19,11 @@
       };
     };
 
+    vintagestory-nix = {
+      url = "git+https://codeberg.org/PierreBorine/vintagestory-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixcord.url = "github:4evy/nixcord";
   };
 

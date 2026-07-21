@@ -34,6 +34,7 @@
     # game managers
     prismlauncher
     # steam
+    vintagestoryPackages.latest
 
     # gui tools
     gimp
@@ -68,6 +69,8 @@
           inherit (prev) system;
         }).orca-slicer;
     })
+
+    inputs.vintagestory-nix.overlays.default
   ];
 
   # necessary due to orca slicer not working otherwise
@@ -81,6 +84,7 @@
     builtins.elem (lib.getName pkg) [
       "vscode"
       "discord"
+      "vintagestory"
     ];
 
   # basic configuration of git, please change to your own
@@ -155,6 +159,13 @@
       jnoortheen.nix-ide
     ];
   };
+
+  # programs.vs-launcher = {
+  #   enable = true;
+  #   settings.gameVersions = with pkgs.vintagestoryPackages; [
+  #     v1-22-4
+  #   ];
+  # };
 
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage
