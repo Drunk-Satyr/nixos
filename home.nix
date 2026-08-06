@@ -152,8 +152,10 @@
       "chat.disableAIFeatures" = true;
       "terminal.integrated.initialHint" = false;
 
+      # git options
       "git.confirmSync" = false;
       "git.enableSmartCommit" = true;
+      "git.autofetch" = true;
     };
     profiles.default.extensions = with pkgs.vscode-extensions; [
       jnoortheen.nix-ide
