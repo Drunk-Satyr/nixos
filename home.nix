@@ -41,6 +41,7 @@
     blender
     openscad
     orca-slicer
+    obsidian
 
     # media
     vlc
