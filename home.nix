@@ -86,6 +86,7 @@
       "vscode"
       "discord"
       "vintagestory"
+      "obsidian"
     ];
 
   # basic configuration of git, please change to your own
@@ -160,6 +161,7 @@
     };
     profiles.default.extensions = with pkgs.vscode-extensions; [
       jnoortheen.nix-ide
+      ms-vscode-remote.remote-ssh
     ];
   };
 
