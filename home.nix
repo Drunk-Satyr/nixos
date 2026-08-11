@@ -87,6 +87,7 @@
       "discord"
       "vintagestory"
       "obsidian"
+      "vscode-extension-ms-vscode-remote-remote-ssh"
     ];
 
   # basic configuration of git, please change to your own
