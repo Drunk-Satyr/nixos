@@ -35,6 +35,8 @@
     prismlauncher
     # steam
     vintagestoryPackages.latest
+    bolt-launcher
+    runelite
 
     # gui tools
     gimp
