@@ -44,6 +44,7 @@
     openscad
     orca-slicer
     obsidian
+    calibre
 
     # media
     vlc
