@@ -45,6 +45,7 @@
     orca-slicer
     obsidian
     calibre
+    nicotine-plus
 
     # media
     vlc
