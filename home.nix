@@ -30,6 +30,7 @@
     nixfmt
     ffmpeg
     yt-dlp
+    arp-scan
 
     # game managers
     prismlauncher
