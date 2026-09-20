@@ -8,7 +8,8 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./network.nix
+    ./modules/network.nix
+    ./modules/systemd.nix
   ];
 
   # Bootloader.
@@ -86,7 +87,7 @@
   # services.xserver.libinput.enable = true;
 
   # Imports packages from sub-file.
-  environment.systemPackages = with pkgs; import ./system-packages.nix { inherit pkgs; };
+  environment.systemPackages = with pkgs; import ./modules/system-packages.nix { inherit pkgs; };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."caro" = {
@@ -157,30 +158,6 @@
 
   # Fixes sleep/hibernate for nvidia
   boot.kernelParams = [ "nvidia.NVreg_TemporaryFilePath=/var/tmp" ];
-
-  systemd.timers."awaken-for-updates" = {
-    wantedBy = [ "timers.target" ];
-    timerConfig = {
-      Unit = "update-nixos";
-      OnCalendar = "05:00";
-      WakeSystem = true;
-      Persistent = false;
-    };
-  };
-
-  systemd.services."update-nixos" = {
-    script = ''
-      set -eu
-      [[ $(git status | grep "Changes not staged for commit:") ]]
-      nix flake update --commit-lock-file
-      nixos-rebuild switch
-      nix-collect-garbage --delete-older-than 14d
-    '';
-    serviceConfig = {
-      Type = "oneshot";
-      User = "root";
-    };
-  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
