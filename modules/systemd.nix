@@ -20,7 +20,7 @@
     serviceConfig = {
       Type = "oneshot";
       User = "root";
-      ExecStart = "/etc/nixos/scripts/update-nixos.sh";
+      ExecStart = [ "/etc/nixos/scripts/update-nixos.sh" ];
     };
   };
 }
