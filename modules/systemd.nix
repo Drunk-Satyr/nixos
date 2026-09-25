@@ -17,16 +17,10 @@
   };
 
   systemd.services."update-nixos" = {
-    script = ''
-      set -eu
-      [[ $(git status | grep "Changes not staged for commit:") ]]
-      nix flake update --commit-lock-file
-      nixos-rebuild switch
-      nix-collect-garbage --delete-older-than 14d
-    '';
     serviceConfig = {
       Type = "oneshot";
       User = "root";
+      ExecStart = "/etc/nixos/scripts/update-nixos.sh";
     };
   };
 }
