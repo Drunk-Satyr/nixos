@@ -7,6 +7,8 @@ FLAKE_LOG_FILE="$BASE_LOGS_DIR/flake.log"
 REBUILD_LOG_FILE="$BASE_LOGS_DIR/rebuild.log"
 PRUNED_LOG_FILE="$BASE_LOGS_DIR/pruned.log"
 LAST_CONFIGURATION_FILE="$BASE_LOGS_DIR/last_configuration"
+LATEST_UPDATE_FILE="$BASE_LOGS_DIR/latest-update.log"
+ALL_UPDATES_FILE="$BASE_LOGS_DIR/all-updates.log"
 UPDATE_NIXOS_FILE="$BASE_LOGS_DIR/update-nixos.log"
 
 log() {
@@ -72,8 +74,12 @@ rebuildNixos() {
             log "Built no packages."
         fi
         log "Updated from $LAST_CONFIGURATION to $CURRENT_CONFIGURATION"
-    fi
-    echo $CURRENT_CONFIGURATION > $LAST_CONFIGURATION_FILE
+
+        nvd diff $(ls -d1v /nix/var/nix/profiles/system-*-link|tail -n 2) > $LATEST_UPDATE_FILE
+        log "System updated." >> $ALL_UPDATES_FILE
+        cat $LATEST_UPDATE_FILE >> $ALL_UPDATES_FILE
+        fi
+        echo $CURRENT_CONFIGURATION > $LAST_CONFIGURATION_FILE
 }
 
 prunePackages() {
@@ -83,6 +89,16 @@ prunePackages() {
     DELETED_PACKAGES_COUNT=$(echo $PRUNED_OUTPUT | grep -o "deleting" | wc -l | awk '{$1--;$1--}1')
     log "Pruned $DELETED_PACKAGES_COUNT unused package(s) over 14 days old."
 }
+
+# prepareUpdateForWake() {
+#     # collect update changes
+    
+
+#     # create pretty message
+
+#     # save to file, overwriting it
+#     echo "INCOMPLETE"
+# }
 
 powerManagement() {
     WAS_SLEEPING=$1
@@ -125,6 +141,8 @@ rebuildNixos
 
 # deletes unused packages older than 14 days
 prunePackages
+
+# prepareUpdateForWake
 
 # if the system was awoken by the systemd
 # service, then return it to sleep, with

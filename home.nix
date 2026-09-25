@@ -31,6 +31,8 @@
     ffmpeg
     yt-dlp
     arp-scan
+    nvd
+    libnotify
 
     # game managers
     prismlauncher

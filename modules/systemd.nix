@@ -17,10 +17,22 @@
   };
 
   systemd.services."update-nixos" = {
+    script = ''
+      bash /etc/nixos/scripts/update-nixos.sh
+    '';
     serviceConfig = {
       Type = "oneshot";
       User = "root";
-      ExecStart = [ "/etc/nixos/scripts/update-nixos.sh" ];
     };
   };
+
+  # systemd.user.services."notify-update" = {
+  #   script = ''
+  #     ${pkgs.libnotify}/bin/notify-send "Applications have updated since you last were on." -a "System"
+  #   '';
+  #   serviceConfig = {
+  #     Type = "oneshot";
+  #   };
+  #   wantedBy = [ "graphical.target" ];
+  # };
 }
