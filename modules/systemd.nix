@@ -21,6 +21,9 @@
       pkgs.nix
       pkgs.nixos-rebuild
       pkgs.git
+      pkgs.coreutils
+      pkgs.nvd
+      pkgs.systemd
     ];
 
     script = ''
@@ -35,10 +38,11 @@
   systemd.user.services."notify-update" = {
     path = [
       pkgs.libnotify
+      pkgs.coreutils
     ];
 
     script = ''
-      ${pkgs.bash}/bin/sh /etc/nixos/scripts/notify-updates.sh ${pkgs.libnotify}/bin/notify-send
+      ${pkgs.bash}/bin/sh /etc/nixos/scripts/notify-updates.sh
     '';
     serviceConfig = {
       Type = "oneshot";
