@@ -11,6 +11,7 @@ LATEST_UPDATE_FILE="$BASE_LOGS_DIR/latest-update.log"
 ALL_UPDATES_FILE="$BASE_LOGS_DIR/all-updates.log"
 UPDATE_NIXOS_FILE="$BASE_LOGS_DIR/update-nixos.log"
 NOTIFY_ON_WAKE_FLAG="$BASE_LOGS_DIR/notify-on-wake.flag"
+WAS_SLEEPING=0 # defaults to false
 
 log() {
     TIMESTAMP=$(date +%Y/%m/%d-%H:%M:%S)
@@ -21,24 +22,23 @@ log() {
 
 wasSystemAwokenFromSleep() {
     log "Checking sleep state..."
-    WAS_SLEEPING=0
     SLEEP_OUTPUT=$(journalctl -n4 -u sleep.target --since "5 minutes ago" -n 1 --no-tail | grep "Stopped target Sleep.")
     if [ $? -eq 0 ]; then
-        WAS_SLEEPING=1
+        $WAS_SLEEPING=1
         log "The device has awoken from sleep within the past 5 minutes, will sleep once script is complete."
     else
         log "The device was already awake, will stay awake once script is complete."
     fi
     log WAS_SLEEPING=$WAS_SLEEPING >> $JOURNALCTL_LOG_FILE
     log journalctl output: $SLEEP_OUTPUT >> $JOURNALCTL_LOG_FILE
-    return $WAS_SLEEPING
 }
 
 exitIfDirtyRepo() {
     git status | grep "Changes not staged for commit:" >/dev/null
     if [ $? -eq 0 ]; then
         log "Unstaged commits detected, cancelling automatic update until repo is no longer dirty."
-        exit 0
+
+        powerManagement # return system to prior state
     fi
 }
 
@@ -94,7 +94,6 @@ prunePackages() {
 }
 
 powerManagement() {
-    WAS_SLEEPING=$1
     REBOOT_HISTORY=$(journalctl -u reboot.target --since "1 week ago" | grep "systemd")
     REBOOT_DETECTED=$?
     POWEROFF_HISTORY=$(journalctl -u poweroff.target --since "1 week ago" | grep "systemd")
@@ -120,7 +119,6 @@ cd $BASE_NIXOS_DIR
 
 # checks if system just awoke from sleep
 wasSystemAwokenFromSleep
-WAS_SLEEPING=$?
 
 # doesn't build when there are uncommitted
 # changes in the repository
@@ -143,4 +141,4 @@ prunePackages
 # system has not been fully powered down
 # (meaning a shutdown or restart) within
 # a week.
-powerManagement $WAS_SLEEPING
+powerManagement

@@ -29,10 +29,40 @@
     script = ''
       ${pkgs.bash}/bin/sh /etc/nixos/scripts/update-nixos.sh
     '';
+
     serviceConfig = {
       Type = "oneshot";
       User = "root";
     };
+  };
+
+  systemd.services."trigger-notify" = {
+    path = [
+      pkgs.systemd
+      pkgs.coreutils
+    ];
+
+    script = ''
+      systemctl --user --machine=caro@sheepytower start --wait notify-update.service
+    '';
+
+    serviceConfig = {
+      Type = "oneshot";
+    };
+
+    after = [
+      "suspend.target"
+      "hibernate.target"
+      "hybrid-sleep.target"
+      "suspend-then-hibernate.target"
+    ];
+
+    wantedBy = [
+      "suspend.target"
+      "hibernate.target"
+      "hybrid-sleep.target"
+      "suspend-then-hibernate.target"
+    ];
   };
 
   systemd.user.services."notify-update" = {
@@ -44,9 +74,11 @@
     script = ''
       ${pkgs.bash}/bin/sh /etc/nixos/scripts/notify-updates.sh
     '';
+
     serviceConfig = {
       Type = "oneshot";
+      User = "caro";
+      Environment = "DISPLAY=:0";
     };
-    wantedBy = [ "graphical.target" ];
   };
 }
