@@ -33,7 +33,7 @@ wasSystemAwokenFromSleep() {
     log journalctl output: $SLEEP_OUTPUT >> $JOURNALCTL_LOG_FILE
 }
 
-exitIfDirtyRepo() {
+resumePowerStateIfRepoIsDirty() {
     git status | grep "Changes not staged for commit:" >/dev/null
     if [ $? -eq 0 ]; then
         log "Unstaged commits detected, cancelling automatic update until repo is no longer dirty."
@@ -122,7 +122,7 @@ wasSystemAwokenFromSleep
 
 # doesn't build when there are uncommitted
 # changes in the repository
-exitIfDirtyRepo
+resumePowerStateIfRepoIsDirty
 
 # update the flake-managed packages
 updateFlake
