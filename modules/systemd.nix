@@ -33,6 +33,10 @@
   };
 
   systemd.user.services."notify-update" = {
+    path = [
+      pkgs.libnotify
+    ];
+
     script = ''
       ${pkgs.bash}/bin/sh /etc/nixos/scripts/notify-updates.sh ${pkgs.libnotify}/bin/notify-send
     '';
