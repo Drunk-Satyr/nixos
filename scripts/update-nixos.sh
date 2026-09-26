@@ -66,7 +66,7 @@ rebuildNixos() {
     LAST_CONFIGURATION=$(cat $LAST_CONFIGURATION_FILE)
     if [ $CURRENT_CONFIGURATION == $LAST_CONFIGURATION ]; then
         log "No change to configuration."
-        log "No system updates while away today." >> $NOTIFY_ON_WAKE_FLAG
+        echo "No system updates while away today." >> $NOTIFY_ON_WAKE_FLAG
     else
         BUILT_PACKAGES=$(echo $REBUILD_OUTPUT | grep "^Building")
         if [ $? -eq 0 ]; then 
@@ -80,7 +80,7 @@ rebuildNixos() {
         nvd diff $(ls -d1v /nix/var/nix/profiles/system-*-link|tail -n 2) > $LATEST_UPDATE_FILE
         log "System updated." >> $ALL_UPDATES_FILE
         cat $LATEST_UPDATE_FILE >> $ALL_UPDATES_FILE
-        log "System updated while away." >> $NOTIFY_ON_WAKE_FLAG
+        echo "System updated while away." >> $NOTIFY_ON_WAKE_FLAG
     fi
     echo $CURRENT_CONFIGURATION > $LAST_CONFIGURATION_FILE
 }
