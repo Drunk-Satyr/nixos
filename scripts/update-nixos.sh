@@ -10,6 +10,7 @@ LAST_CONFIGURATION_FILE="$BASE_LOGS_DIR/last_configuration"
 LATEST_UPDATE_FILE="$BASE_LOGS_DIR/latest-update.log"
 ALL_UPDATES_FILE="$BASE_LOGS_DIR/all-updates.log"
 UPDATE_NIXOS_FILE="$BASE_LOGS_DIR/update-nixos.log"
+NOTIFY_ON_WAKE_FLAG="$BASE_LOGS_DIR/notify-on-wake.flag"
 
 log() {
     TIMESTAMP=$(date +%Y/%m/%d-%H:%M:%S)
@@ -29,7 +30,7 @@ wasSystemAwokenFromSleep() {
         log "The device was already awake, will stay awake once script is complete."
     fi
     log WAS_SLEEPING=$WAS_SLEEPING >> $JOURNALCTL_LOG_FILE
-    log $SLEEP_OUTPUT >> $JOURNALCTL_LOG_FILE
+    log journalctl output: $SLEEP_OUTPUT >> $JOURNALCTL_LOG_FILE
     return $WAS_SLEEPING
 }
 
@@ -65,6 +66,7 @@ rebuildNixos() {
     LAST_CONFIGURATION=$(cat $LAST_CONFIGURATION_FILE)
     if [ $CURRENT_CONFIGURATION == $LAST_CONFIGURATION ]; then
         log "No change to configuration."
+        log "No system updates while away today." >> $NOTIFY_ON_WAKE_FLAG
     else
         BUILT_PACKAGES=$(echo $REBUILD_OUTPUT | grep "^Building")
         if [ $? -eq 0 ]; then 
@@ -78,8 +80,9 @@ rebuildNixos() {
         nvd diff $(ls -d1v /nix/var/nix/profiles/system-*-link|tail -n 2) > $LATEST_UPDATE_FILE
         log "System updated." >> $ALL_UPDATES_FILE
         cat $LATEST_UPDATE_FILE >> $ALL_UPDATES_FILE
-        fi
-        echo $CURRENT_CONFIGURATION > $LAST_CONFIGURATION_FILE
+        log "System updated while away." >> $NOTIFY_ON_WAKE_FLAG
+    fi
+    echo $CURRENT_CONFIGURATION > $LAST_CONFIGURATION_FILE
 }
 
 prunePackages() {
@@ -89,16 +92,6 @@ prunePackages() {
     DELETED_PACKAGES_COUNT=$(echo $PRUNED_OUTPUT | grep -o "deleting" | wc -l | awk '{$1--;$1--}1')
     log "Pruned $DELETED_PACKAGES_COUNT unused package(s) over 14 days old."
 }
-
-# prepareUpdateForWake() {
-#     # collect update changes
-    
-
-#     # create pretty message
-
-#     # save to file, overwriting it
-#     echo "INCOMPLETE"
-# }
 
 powerManagement() {
     WAS_SLEEPING=$1

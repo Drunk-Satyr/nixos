@@ -17,8 +17,14 @@
   };
 
   systemd.services."update-nixos" = {
+    path = [
+      pkgs.nix
+      pkgs.nixos-rebuild
+      pkgs.git
+    ];
+
     script = ''
-      bash /etc/nixos/scripts/update-nixos.sh
+      ${pkgs.bash}/bin/sh /etc/nixos/scripts/update-nixos.sh
     '';
     serviceConfig = {
       Type = "oneshot";
@@ -26,13 +32,13 @@
     };
   };
 
-  # systemd.user.services."notify-update" = {
-  #   script = ''
-  #     ${pkgs.libnotify}/bin/notify-send "Applications have updated since you last were on." -a "System"
-  #   '';
-  #   serviceConfig = {
-  #     Type = "oneshot";
-  #   };
-  #   wantedBy = [ "graphical.target" ];
-  # };
+  systemd.user.services."notify-update" = {
+    script = ''
+      ${pkgs.bash}/bin/sh /etc/nixos/scripts/notify-updates.sh ${pkgs.libnotify}/bin/notify-send
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+    };
+    wantedBy = [ "graphical.target" ];
+  };
 }
