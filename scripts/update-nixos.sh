@@ -125,7 +125,7 @@ wasSystemAwokenFromSleep
 resumePowerStateIfRepoIsDirty
 
 # update the flake-managed packages
-updateFlake
+# updateFlake # tempoarily disabled until github:4evy/nixcord/issues/247 is resolved
 
 # rebuild the NixOS system
 rebuildNixos
