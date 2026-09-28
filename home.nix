@@ -49,6 +49,7 @@
     obsidian
     calibre
     nicotine-plus
+    audacity
 
     # media
     vlc
