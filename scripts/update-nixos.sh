@@ -125,15 +125,13 @@ wasSystemAwokenFromSleep
 resumePowerStateIfRepoIsDirty
 
 # update the flake-managed packages
-# updateFlake # tempoarily disabled until github:4evy/nixcord/issues/247 is resolved
+updateFlake # tempoarily disabled until github:4evy/nixcord/issues/247 is resolved
 
 # rebuild the NixOS system
 rebuildNixos
 
 # deletes unused packages older than 14 days
 prunePackages
-
-# prepareUpdateForWake
 
 # if the system was awoken by the systemd
 # service, then return it to sleep, with
