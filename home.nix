@@ -174,12 +174,7 @@
     ];
   };
 
-  # programs.vs-launcher = {
-  #   enable = true;
-  #   settings.gameVersions = with pkgs.vintagestoryPackages; [
-  #     v1-22-4
-  #   ];
-  # };
+  services.mpris-proxy.enable = true;
 
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage
