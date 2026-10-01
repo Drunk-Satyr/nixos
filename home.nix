@@ -98,7 +98,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    systemd.enable = true;
+    systemd.enable = false;
     # settings = {
     #   exec-once = "noctalia";
     # };
@@ -106,6 +106,7 @@
 
   programs.noctalia = {
     enable = true;
+    systemd.enable = true;
     # recommendedServices.enable = true;
     # settings = {
     #   # configure options
