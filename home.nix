@@ -9,10 +9,8 @@
 {
   imports = [
     inputs.zen-browser.homeModules.beta
-    # or inputs.zen-browser.homeModules.twilight
-    # or inputs.zen-browser.homeModules.twilight-official
-
     inputs.nixcord.homeModules.nixcord
+    inputs.noctalia.homeModules.default
   ];
 
   home.username = "caro";
@@ -97,6 +95,22 @@
       "obsidian"
       "vscode-extension-ms-vscode-remote-remote-ssh"
     ];
+
+  wayland.windowManager.hyprland = {
+    enable = true;
+    systemd.enable = false;
+    settings = {
+      exec-once = "noctalia";
+    };
+  };
+
+  programs.noctalia = {
+    enable = true;
+    # recommendedServices.enable = true;
+    settings = {
+      # configure options
+    };
+  };
 
   # basic configuration of git, please change to your own
   programs.git = {
