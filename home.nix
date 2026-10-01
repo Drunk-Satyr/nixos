@@ -19,6 +19,7 @@
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     # cli utilities
+    kitty
     zip
     xz
     unzip
