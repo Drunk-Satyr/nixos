@@ -98,18 +98,18 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    systemd.enable = false;
-    settings = {
-      exec-once = "noctalia";
-    };
+    systemd.enable = true;
+    # settings = {
+    #   exec-once = "noctalia";
+    # };
   };
 
   programs.noctalia = {
     enable = true;
     # recommendedServices.enable = true;
-    settings = {
-      # configure options
-    };
+    # settings = {
+    #   # configure options
+    # };
   };
 
   # basic configuration of git, please change to your own
