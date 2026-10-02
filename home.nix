@@ -33,12 +33,9 @@
     nvd
     libnotify
 
-    # game managers
-    prismlauncher
-    # steam
-    vintagestoryPackages.latest
-    bolt-launcher
-    runelite
+    # file explorers
+    nautilus
+    superfile
 
     # gui tools
     gimp
@@ -49,7 +46,6 @@
     calibre
     nicotine-plus
     audacity
-    # dolphin
 
     # media
     vlc
@@ -57,6 +53,13 @@
 
     # messaging
     signal-desktop
+
+    # game managers
+    prismlauncher
+    # steam
+    vintagestoryPackages.latest
+    bolt-launcher
+    runelite
 
     # email
     # thunderbird
