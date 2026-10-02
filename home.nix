@@ -100,18 +100,17 @@
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = false;
-    # settings = {
-    #   exec-once = "noctalia";
-    # };
+  };
+
+  xdg.configFile."hypr" = {
+    source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/hypr";
+    force = true;
+    recursive = true;
   };
 
   programs.noctalia = {
     enable = true;
     systemd.enable = true;
-    # recommendedServices.enable = true;
-    # settings = {
-    #   # configure options
-    # };
   };
 
   # basic configuration of git, please change to your own
