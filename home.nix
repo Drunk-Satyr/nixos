@@ -10,7 +10,7 @@
   imports = [
     inputs.zen-browser.homeModules.beta
     inputs.nixcord.homeModules.nixcord
-    inputs.noctalia.homeModules.default
+    #inputs.noctalia.homeModules.default
   ];
 
   home.username = "caro";
@@ -49,6 +49,7 @@
     calibre
     nicotine-plus
     audacity
+    # dolphin
 
     # media
     vlc
@@ -102,11 +103,11 @@
     systemd.enable = false;
   };
 
-  xdg.configFile."hypr" = {
-    source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/hypr";
-    force = true;
-    recursive = true;
-  };
+  # xdg.configFile."hypr" = {
+  #   source = config.lib.file.mkOutOfStoreSymlink "/etc/nixos/hypr";
+  #   force = true;
+  #   recursive = true;
+  # };
 
   programs.noctalia = {
     enable = true;
