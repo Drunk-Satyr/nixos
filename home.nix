@@ -34,8 +34,8 @@
     libnotify
 
     # file explorers
-    nautilus
-    superfile
+    nautilus # gui
+    superfile # cli
 
     # gui tools
     gimp
