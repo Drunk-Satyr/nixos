@@ -79,6 +79,15 @@
     extraPortals = with pkgs; [ xdg-desktop-portal-hyprland ];
   };
 
+  # Required for Dolphin to query and mount storage devices via UDisks2
+  services.udisks2.enable = true;
+
+  # Required for virtual filesystem support and removable media handling
+  services.gvfs.enable = true;
+
+  # required for kitty to work on hyprland
+  # environment.enableAllTerminfo = true;
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";

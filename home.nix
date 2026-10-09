@@ -18,8 +18,10 @@
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
+    # terminal
+    terminator
+
     # cli utilities
-    kitty
     zip
     xz
     unzip
@@ -32,10 +34,7 @@
     arp-scan
     nvd
     libnotify
-
-    # file explorers
-    nautilus # gui
-    superfile # cli
+    superfile # cli file browser
 
     # gui tools
     gimp
