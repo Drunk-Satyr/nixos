@@ -59,6 +59,7 @@
     vintagestoryPackages.latest
     bolt-launcher
     runelite
+    heroic
 
     # email
     # thunderbird
