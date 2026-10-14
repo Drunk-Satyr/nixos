@@ -59,6 +59,7 @@
     bolt-launcher # old school runescape
     runelite # runescape launcher
     heroic # GOG & Epic (& Amazon) Launcher
+    limo # general (NexusMods supported) mod manager
 
     # email
     # thunderbird
