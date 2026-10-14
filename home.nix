@@ -43,7 +43,7 @@
     orca-slicer
     obsidian
     calibre
-    nicotine-plus
+    nicotine-plus # soulseek
     audacity
 
     # media
@@ -53,13 +53,12 @@
     # messaging
     signal-desktop
 
-    # game managers
-    prismlauncher
-    # steam
+    # games
+    prismlauncher # minecraft launcher
     vintagestoryPackages.latest
-    bolt-launcher
-    runelite
-    heroic
+    bolt-launcher # old school runescape
+    runelite # runescape launcher
+    heroic # GOG & Epic (& Amazon) Launcher
 
     # email
     # thunderbird
