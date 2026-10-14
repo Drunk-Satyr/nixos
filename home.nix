@@ -99,6 +99,7 @@
       "vintagestory"
       "obsidian"
       "vscode-extension-ms-vscode-remote-remote-ssh"
+      "nexusmods-app"
     ];
 
   wayland.windowManager.hyprland = {
