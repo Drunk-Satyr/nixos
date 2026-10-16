@@ -35,6 +35,7 @@
     nvd
     libnotify
     superfile # cli file browser
+    wl-clipboard # cli copy/paste for wayland
 
     # gui tools
     gimp
@@ -45,6 +46,11 @@
     calibre
     nicotine-plus # soulseek
     audacity
+
+    # screenshot tools
+    grim # grab images
+    slurp # edit screenshot
+    swappy # select region
 
     # media
     vlc
